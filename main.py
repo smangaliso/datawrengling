@@ -3,7 +3,6 @@ import requests
 from bs4 import BeautifulSoup
 from matplotlib import pyplot as plt
 
-
 # Request for the HTML response using the URL
 url = "https://en.wikipedia.org/wiki/Road_safety_in_Europe"
 response = requests.get(url)
@@ -38,16 +37,15 @@ df['year'] = year
 # sort data
 df = df.sort_values('Road deaths per Million Inhabitants')
 
-#plot country with most deaths per million capita
-
-
-
+# plot countries with few deaths per million capita
+plt.title('Countries with few deaths per million capita')
+plt.ylabel("deaths per million capita")
+plt.bar(df['Country'][:4],df['Road deaths per Million Inhabitants'][:4])
+plt.savefig("Deaths_per_million_Capita.png")
 
 
 # export to CSV
 df.to_csv('Road_safety_in_Europe.csv', index=False)
-
-
 
 if __name__ == '__main__':
     pass
